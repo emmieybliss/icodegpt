@@ -87,7 +87,7 @@ export function ConceptualIDE() {
       </motion.div>
       <motion.div
         aria-hidden
-        className="absolute -bottom-7 left-6 z-20 hidden lg:block"
+        className="absolute -bottom-6 -left-5 z-20 hidden lg:block"
         animate={reduce ? undefined : { y: [0, 9, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
       >
@@ -240,7 +240,7 @@ export function ConceptualIDE() {
                   <div className="mb-2 flex items-center gap-1.5 font-mono text-[10.5px] text-zinc-500">
                     <SquareTerminal className="h-3 w-3" /> terminal
                   </div>
-                  <div className="min-h-[66px] space-y-1 font-mono text-[11.5px] lg:pl-28">
+                  <div className="min-h-[66px] space-y-1 font-mono text-[11.5px]">
                     {phase === 5 ? (
                       RESULTS.map((r, i) => (
                         <motion.p
