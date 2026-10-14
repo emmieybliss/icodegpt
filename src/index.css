@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-ink-950 font-sans text-zinc-300 antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: rgba(91, 140, 255, 0.35);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid #7aa2ff;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+  h1, h2, h3 {
+    @apply font-display text-white;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+  .section {
+    @apply relative py-24 sm:py-32;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-400;
+  }
+  .surface {
+    @apply rounded-2xl border border-white/[0.08] bg-ink-900/80;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset, 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+  }
+  .glass {
+    @apply border border-white/10 bg-ink-900/60 backdrop-blur-xl;
+  }
+  .text-gradient {
+    background: linear-gradient(100deg, #ffffff 0%, #c9d6ff 40%, #9fb6ff 70%, #b9a6ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* Animated gradient border: wrap content in .gradient-border > .gradient-border-inner */
+  .gradient-border {
+    position: relative;
+    border-radius: 1.5rem;
+    padding: 1px;
+    background: conic-gradient(from var(--angle), rgba(91, 140, 255, 0.0) 0deg, rgba(91, 140, 255, 0.9) 70deg, rgba(139, 108, 255, 0.9) 140deg, rgba(63, 208, 224, 0.0) 220deg, rgba(91, 140, 255, 0.0) 360deg);
+    animation: border-spin 7s linear infinite;
+  }
+  .gradient-border-inner {
+    border-radius: calc(1.5rem - 1px);
+    @apply bg-ink-900;
+  }
+  .card-hover {
+    @apply transition-[transform,border-color,background-color] duration-300 ease-out;
+  }
+  .card-hover:hover {
+    @apply -translate-y-1 border-white/[0.16];
+  }
+}
+
+@keyframes border-spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .card-hover:hover {
+    transform: none;
+  }
+}
