@@ -18,6 +18,8 @@ npm run preview   # serve the production build locally
 
 `npm run build` writes a fully static site to `dist/`. Upload the **contents** of `dist/` to any static or shared host (cPanel `public_html`, Netlify, Vercel, Cloudflare Pages, S3, etc.). Asset paths are relative (`base: './'`), so it also works from a subfolder.
 
+`public/.htaccess` ships with the build for Apache/LiteSpeed hosts such as Namecheap: it forces `https://icodegpt.com` (no www), enables compression and sets long-lived caching for the hashed JS/CSS. Make sure hidden files are uploaded too.
+
 ## Editing content
 
 All copy, links, price and comparable sales live in `src/data/content.ts`:
